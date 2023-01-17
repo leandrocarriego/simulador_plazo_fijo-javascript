@@ -1,1 +1,9 @@
-"# simulador_plazo_fijo-javascript" 
+# Simulador de plazo fijo
+Proyecto desarrollado como primera entrega para el curso de JavaScritp de Coderhouse. 
+Se utiliza:
+ - HTML5
+ - CSS
+ - Bootstrap
+ - JavaScritp 
+
+VER DEPLOY: https://leandrocarriego.github.io/simulador_plazo_fijo-javascript/

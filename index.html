@@ -13,84 +13,135 @@
     />
   </head>
   <body class="bg-dark text-white">
-    <h1 class="container m-5">Simulá tu plazo fijo</h1>
-    <form class="container col-4 m-5">
-      <div class="mb-3">
-        <label for="monto" class="form-label">¿Cuánto quieres invertir?</label>
-        <input
-          type="number"
-          min="1000"
-          class="form-control"
-          id="monto"
-        />
-      </div>
-      <div class="mb-3">
-        <p>
-          ¿Durante cuanto tiempo?
-        </p>
-        <label>
-          <input 
-          class="form-check-input"
-          type="radio"
-          name="meses"
-          id="unMes"
-          value="1"
-            checked
-          />
-          1 mes
-        </label>
-        <label>
-          <input 
-          class="form-check-input"
-          type="radio"
-          name="meses"
-          id="seisMeses"
-          value="6"
-          />
-          6 meses
-        </label>
-        <label>
+    <!-- Login section -->
+    <div id="login">
+      <h2 class="container m-5">Ingresa tus datos para acceder al simulador de plazo fijo</h1>
+      <form class="container col-4 m-5">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
           <input
-          class="form-check-input" 
-          type="radio"
-          name="meses"
-          id="doceMeses"
-          value="12" 
+            type="text"
+            class="form-control"
+            id="nombre"
+            required
           />
-          12 meses
-        </label>
-        <label>
-          <input 
-          class="form-check-input"
-          type="radio"
-          name="meses"
-          id="dieciochoMeses"
-          value="18" 
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            required
           />
-          18 meses
-        </label>
-      </div>
-      <button type="button" onclick="calculoGanancias()" class="btn btn-primary mt-4">Calcular</button>
-    </form>
-    
+        </div>
 
-    <div class="container m-5 text-black">
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="./img/ahorro.jpg" class="img-fluid rounded-start" alt="mano juntando monedas">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <p class="card-title">Al final del plazo fijo, recibís</p>
-                  <h2 class="card-text" id="gananciaTotal">$ 0</h2>
-                  <p class="card-text">Porcentaje anual: 75,00%</p>
-                  <p class="card-text" id="interesGanado">Interés ganado: $0</p>
+        <div class="mb-3">
+          <label for="edad" class="form-label">Edad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="edad"
+            required
+          />
+        </div>
+        <button type="button" onclick="crearUsuario()" class="btn btn-primary mt-4">Ingresar</button>
+      </form>
+    </div>
+    <!-- Simulador section -->
+    
+    <div class="d-none" id="simulador">
+      <div>
+        <h1 class=" m-5">Simulá tu plazo fijo</h1>
+        <form class=" m-5">
+          <div class="mb-3">
+            <label for="monto" class="form-label">¿Cuánto quieres invertir?</label>
+            <input
+              type="number"
+              min="1000"
+              class="form-control"
+              id="monto"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <p>
+              ¿Durante cuanto tiempo?
+            </p>
+            <label>
+              <input 
+              class="form-check-input"
+              type="radio"
+              name="meses"
+              id="unMes"
+              value="1"
+                checked
+              />
+              1 mes
+            </label>
+            <label>
+              <input 
+              class="form-check-input"
+              type="radio"
+              name="meses"
+              id="seisMeses"
+              value="6"
+              />
+              6 meses
+            </label>
+            <label>
+              <input
+              class="form-check-input" 
+              type="radio"
+              name="meses"
+              id="doceMeses"
+              value="12" 
+              />
+              12 meses
+            </label>
+            <label>
+              <input 
+              class="form-check-input"
+              type="radio"
+              name="meses"
+              id="dieciochoMeses"
+              value="18" 
+              />
+              18 meses
+            </label>
+          </div>
+          <div class="d-flex mt-2 d-flex mt-4 justify-content-">
+            <button type="button" onclick="calculoGanancias()" class="btn btn-primary m-1">Calcular</button>
+            <button type="button" onclick="agregarInversion()" class="btn btn-success m-1">Invertir</button>
+          </div>
+        </form>
+        
+    
+        <div class="m-5 text-black">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="./assets/img/ahorro.jpg" class="img-fluid rounded-start" alt="mano juntando monedas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <p class="card-title">Al final del plazo fijo, recibís</p>
+                      <h2 class="card-text" id="gananciaTotal">$ 0</h2>
+                      <p class="card-text">Porcentaje anual: 75,00%</p>
+                      <p class="card-text" id="interesGanado">Interés ganado: $0</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row">
+          <h2 id="inversiones">Tienes 0 inversiones</h2>
+        </div>
+      </div>
     </div>
+
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

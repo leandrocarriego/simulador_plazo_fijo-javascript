@@ -4,6 +4,7 @@ Se utiliza:
  - HTML5
  - CSS
  - Bootstrap
- - JavaScritp 
+ - JavaScript
+ - Objetos y Arrays
 
 VER DEPLOY: https://leandrocarriego.github.io/simulador_plazo_fijo-javascript/

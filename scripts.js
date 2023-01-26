@@ -3,7 +3,18 @@ class Usuario {
     this.nombre = nombre;
     this.apellido = apellido;
     this.edad = edad;
+    this.inversionesTotales = [];
   }
+
+  invertir = ( monto, interes) => {
+    this.inversionesTotales.push([monto, interes]);
+  };
+
+  consultarInversionesDuplicanMontoInicial = () => {
+    let inversionesDuplicanMonto = this.inversionesTotales.filter(inversion => inversion[0] < inversion[1]);
+    return inversionesDuplicanMonto;
+  }
+
 }
 
 class Inversion {
@@ -23,6 +34,7 @@ class Inversion {
 }
 
 // Login
+let usuario;
 
 const crearUsuario = () => {
   let nombreIngresado = document.getElementsByName("nombre").value;
@@ -32,15 +44,18 @@ const crearUsuario = () => {
   if (edadIngresada < 18) {
     alert("Debes ser mayor de edad para ingresar");
   } else {
-    const usuario = new Usuario({
+    usuario = new Usuario({
       nombre: nombreIngresado,
       apellido: apellidoIngresado,
       edad: edadIngresada,
     });
     document.getElementById("login").className = "d-none";
     document.getElementById("simulador").className = "d-flex";
+
   }
 };
+
+
 
 const calculoGanancias = () => {
   let mesesIngresados = document.getElementsByName("meses");
@@ -61,23 +76,33 @@ const calculoGanancias = () => {
   let gananciaTotal = inversion.calcularGananciaTotal();
   let interesGanado = inversion.calcularInteresGanado();
 
-  document.getElementById("gananciaTotal").innerHTML = `$${gananciaTotal}`;
+  document.getElementById("gananciaTotal").innerHTML = gananciaTotal;
   document.getElementById(
-    "interesGanado"
-  ).innerHTML = `Interés ganado: $${interesGanado}`;
+    "interesGanadoMostrar"
+  ).innerHTML = interesGanado;
   if (interesGanado > inversion.monto) {
     alert("El monto que ganaras sera mayor a tu inversion");
   }
 };
 
-// Tabla de inversiones
-
-let inversiones = [];
-
 const agregarInversion = () => {
-    let monto = document.getElementById("monto").value;
-    let interes = document.getElementById("interesGanado").value;
-    inversiones.push([monto, interes]);
-    document.getElementById("inversiones").innerHTML = `Tienes ${inversiones.length} inversiones`;
+  let monto = Number(document.getElementById("monto").value);
+  let interes = Number(document.getElementById("interesGanadoMostrar").innerHTML);
+  usuario.invertir(monto, interes);
+  console.log(usuario.inversionesTotales)
+  document.getElementById("inversiones").innerHTML = `Tienes ${usuario.inversionesTotales.length} inversiones`;
 };
+
+const consultarInversiones = () => {
+  let inversionQueDuplican = usuario.consultarInversionesDuplicanMontoInicial();
+  if (inversionQueDuplican.length > 0) {
+    let count = 1;
+    for (let inversion of inversionQueDuplican) {
+      document.getElementById("duplican").innerHTML += `<br> Inversion N°${count}: <br>-monto invertido: $${inversion[0]} <br> 
+      -interes ganado: $${inversion[1]}`;
+      count++;
+    }
+  }
+} 
+
 

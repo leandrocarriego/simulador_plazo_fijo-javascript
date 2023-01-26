@@ -126,9 +126,9 @@
                   <div class="col-md-8">
                     <div class="card-body">
                       <p class="card-title">Al final del plazo fijo, recibís</p>
-                      <h2 class="card-text" id="gananciaTotal">$ 0</h2>
+                      <h2 class="card-text">$<span id="gananciaTotal">0</span></h2>
                       <p class="card-text">Porcentaje anual: 75,00%</p>
-                      <p class="card-text" id="interesGanado">Interés ganado: $0</p>
+                      <p class="card-text">Interés ganado: $<span id="interesGanadoMostrar">0</span></p>
                     </div>
                   </div>
                 </div>
@@ -136,8 +136,10 @@
         </div>
       </div>
       <div>
-        <div class="row">
-          <h2 id="inversiones">Tienes 0 inversiones</h2>
+        <div class="row mb-5">
+          <h2 id="inversiones">Tienes 0 inversiones en total</h2>
+          <button type="button" onclick="consultarInversiones()" class="btn btn-primary m-1">Consultar</button>
+          <h2 id="inversiones">Estas inversiones duplican el monto inicial <span id="duplican">0</span></h2>
         </div>
       </div>
     </div>

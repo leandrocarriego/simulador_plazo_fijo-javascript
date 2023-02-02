@@ -1,3 +1,5 @@
+// Clases
+
 class Usuario {
   constructor({ nombre, apellido, edad }) {
     this.nombre = nombre;
@@ -33,10 +35,12 @@ class Inversion {
   }
 }
 
+
 // Login
 let usuario;
+const botonLogin = document.getElementById('btn-login');
 
-const crearUsuario = () => {
+botonLogin.onclick = () => {
   let nombreIngresado = document.getElementsByName("nombre").value;
   let apellidoIngresado = document.getElementsByName("apellido").value;
   let edadIngresada = Number(document.getElementById("edad").value);
@@ -55,9 +59,12 @@ const crearUsuario = () => {
   }
 };
 
+// Calcular plazo fijo
+const botonCalcular = document.getElementById('btn-calcular');
 
 
-const calculoGanancias = () => {
+
+botonCalcular.onclick = () => {
   let mesesIngresados = document.getElementsByName("meses");
   let montoIngresado = Number(document.getElementById("monto").value);
   let cantidadMeses = 0;
@@ -85,7 +92,11 @@ const calculoGanancias = () => {
   }
 };
 
-const agregarInversion = () => {
+// Agregar inversion
+const botonInvertir = document.getElementById('btn-invertir');
+
+
+botonInvertir.onclick = () => {
   let monto = Number(document.getElementById("monto").value);
   let interes = Number(document.getElementById("interesGanadoMostrar").innerHTML);
   usuario.invertir(monto, interes);
@@ -93,7 +104,11 @@ const agregarInversion = () => {
   document.getElementById("inversiones").innerHTML = `Tienes ${usuario.inversionesTotales.length} inversiones`;
 };
 
-const consultarInversiones = () => {
+
+// Consultar inversiones
+const botonConsultarInversiones = document.getElementById('btn-consultar-inversiones');
+
+botonConsultarInversiones.onclick = () => {
   let inversionQueDuplican = usuario.consultarInversionesDuplicanMontoInicial();
   if (inversionQueDuplican.length > 0) {
     let count = 1;

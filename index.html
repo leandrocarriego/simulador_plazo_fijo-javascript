@@ -45,7 +45,7 @@
             required
           />
         </div>
-        <button type="button" onclick="crearUsuario()" class="btn btn-primary mt-4">Ingresar</button>
+        <button type="button" id="btn-login" class="btn btn-primary mt-4">Ingresar</button>
       </form>
     </div>
     <!-- Simulador section -->
@@ -111,8 +111,8 @@
             </label>
           </div>
           <div class="d-flex mt-2 d-flex mt-4 justify-content-">
-            <button type="button" onclick="calculoGanancias()" class="btn btn-primary m-1">Calcular</button>
-            <button type="button" onclick="agregarInversion()" class="btn btn-success m-1">Invertir</button>
+            <button type="button" id="btn-calcular" class="btn btn-primary m-1">Calcular</button>
+            <button type="button" id="btn-invertir" class="btn btn-success m-1">Invertir</button>
           </div>
         </form>
         
@@ -137,8 +137,8 @@
       </div>
       <div>
         <div class="row mb-5">
-          <h2 id="inversiones">Tienes 0 inversiones en total</h2>
-          <button type="button" onclick="consultarInversiones()" class="btn btn-primary m-1">Consultar</button>
+          <h2 id="inversiones">Tienes 0 inversiones</h2>
+          <button type="button" id="btn-consultar-inversiones" class="btn btn-primary m-1">Consultar</button>
           <h2 id="inversiones">Estas inversiones duplican el monto inicial <span id="duplican">0</span></h2>
         </div>
       </div>

@@ -1,23 +1,24 @@
 // Clases
 
-class Usuario {
-  constructor({ nombre, apellido, edad }) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.edad = edad;
-    this.inversionesTotales = [];
-  }
+// class Usuario {
+//   constructor({ nombre, apellido, edad }) {
+//     this.nombre = nombre;
+//     this.apellido = apellido;
+//     this.edad = edad;
+//     this.inversionesTotales = [];
+//   };
 
-  invertir = ( monto, interes) => {
-    this.inversionesTotales.push([monto, interes]);
-  };
 
-  consultarInversionesDuplicanMontoInicial = () => {
-    let inversionesDuplicanMonto = this.inversionesTotales.filter(inversion => inversion[0] < inversion[1]);
-    return inversionesDuplicanMonto;
-  }
+//   invertir = ( monto, interes) => {
+//     this.inversionesTotales.push([monto, interes]);
+//   };
 
-}
+//   consultarInversionesDuplicanMontoInicial = () => {
+//     let inversionesDuplicanMonto = this.inversionesTotales.filter(inversion => inversion[0] < inversion[1]);
+//     return inversionesDuplicanMonto;
+//   }
+
+// }
 
 class Inversion {
   constructor({ monto, meses }) {
@@ -35,29 +36,35 @@ class Inversion {
   }
 }
 
+// Variables
+let inversiones = JSON.parse(localStorage.getItem('inversiones'));
+let inversionActual;
+let gananciaTotal;
+let interesGanado;
 
-// Login
-let usuario;
-const botonLogin = document.getElementById('btn-login');
+// Funciones
+const agregarFilasALaTabla = (inversion) => {
+  const row = document.createElement('tr');
+  row.innerHTML =  `
+  <td>${inversion.monto}</td>
+  <td>${inversion.calcularInteresGanado()}</td>
+  `;
 
-botonLogin.onclick = () => {
-  let nombreIngresado = document.getElementsByName("nombre").value;
-  let apellidoIngresado = document.getElementsByName("apellido").value;
-  let edadIngresada = Number(document.getElementById("edad").value);
+  const botonBorrarInversion = document.createElement('td');
+  botonBorrarInversion.innerHTML = '<button class="btn btn-danger">Retirar inversion</button>';
+  botonBorrarInversion.addEventListener('click', () => {
+    row.remove();
+  });
 
-  if (edadIngresada < 18) {
-    alert("Debes ser mayor de edad para ingresar");
-  } else {
-    usuario = new Usuario({
-      nombre: nombreIngresado,
-      apellido: apellidoIngresado,
-      edad: edadIngresada,
-    });
-    document.getElementById("login").className = "d-none";
-    document.getElementById("simulador").className = "d-flex";
+  row.append(botonBorrarInversion);
+}
 
-  }
-};
+
+if (inversiones == null) {
+  inversiones = [];
+}
+
+document.getElementById("inversiones").innerHTML = `Tienes ${inversiones.length} inversiones`;
 
 // Calcular plazo fijo
 const botonCalcular = document.getElementById('btn-calcular');
@@ -75,21 +82,18 @@ botonCalcular.onclick = () => {
     }
   }
 
-  const inversion = new Inversion({
+  inversionActual = new Inversion({
     monto: montoIngresado,
     meses: cantidadMeses,
   });
 
-  let gananciaTotal = inversion.calcularGananciaTotal();
-  let interesGanado = inversion.calcularInteresGanado();
+  gananciaTotal = inversionActual.calcularGananciaTotal();
+  interesGanado = inversionActual.calcularInteresGanado();
 
   document.getElementById("gananciaTotal").innerHTML = gananciaTotal;
   document.getElementById(
     "interesGanadoMostrar"
   ).innerHTML = interesGanado;
-  if (interesGanado > inversion.monto) {
-    alert("El monto que ganaras sera mayor a tu inversion");
-  }
 };
 
 // Agregar inversion
@@ -97,27 +101,14 @@ const botonInvertir = document.getElementById('btn-invertir');
 
 
 botonInvertir.onclick = () => {
-  let monto = Number(document.getElementById("monto").value);
-  let interes = Number(document.getElementById("interesGanadoMostrar").innerHTML);
-  usuario.invertir(monto, interes);
-  console.log(usuario.inversionesTotales)
-  document.getElementById("inversiones").innerHTML = `Tienes ${usuario.inversionesTotales.length} inversiones`;
+  inversiones.push({
+    inversion: inversionActual.monto,
+    ganancia: inversionActual.calcularInteresGanado()
+  })
+  document.getElementById("inversiones").innerHTML = `Tienes ${inversiones.length} inversiones`;
+  localStorage.setItem('inversiones', JSON.stringify(inversiones));
 };
 
 
-// Consultar inversiones
-const botonConsultarInversiones = document.getElementById('btn-consultar-inversiones');
-
-botonConsultarInversiones.onclick = () => {
-  let inversionQueDuplican = usuario.consultarInversionesDuplicanMontoInicial();
-  if (inversionQueDuplican.length > 0) {
-    let count = 1;
-    for (let inversion of inversionQueDuplican) {
-      document.getElementById("duplican").innerHTML += `<br> Inversion N°${count}: <br>-monto invertido: $${inversion[0]} <br> 
-      -interes ganado: $${inversion[1]}`;
-      count++;
-    }
-  }
-} 
 
 

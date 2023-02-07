@@ -13,44 +13,9 @@
     />
   </head>
   <body class="bg-dark text-white">
-    <!-- Login section -->
-    <div id="login">
-      <h2 class="container m-5">Ingresa tus datos para acceder al simulador de plazo fijo</h1>
-      <form class="container col-4 m-5">
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="apellido" class="form-label">Apellido</label>
-          <input
-            type="text"
-            class="form-control"
-            id="apellido"
-            required
-          />
-        </div>
-
-        <div class="mb-3">
-          <label for="edad" class="form-label">Edad</label>
-          <input
-            type="number"
-            class="form-control"
-            id="edad"
-            required
-          />
-        </div>
-        <button type="button" id="btn-login" class="btn btn-primary mt-4">Ingresar</button>
-      </form>
-    </div>
     <!-- Simulador section -->
     
-    <div class="d-none" id="simulador">
+    <div class="d-flex" id="simulador">
       <div>
         <h1 class=" m-5">Simulá tu plazo fijo</h1>
         <form class=" m-5">
@@ -138,8 +103,6 @@
       <div>
         <div class="row mb-5">
           <h2 id="inversiones">Tienes 0 inversiones</h2>
-          <button type="button" id="btn-consultar-inversiones" class="btn btn-primary m-1">Consultar</button>
-          <h2 id="inversiones">Estas inversiones duplican el monto inicial <span id="duplican">0</span></h2>
         </div>
       </div>
     </div>

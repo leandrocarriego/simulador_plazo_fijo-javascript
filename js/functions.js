@@ -1,4 +1,9 @@
-export const agregarFilasALaTabla = (inversion, tabla, arrayInversiones) => {
+export const agregarFilasALaTabla = (
+  inversion,
+  tabla,
+  arrayInversiones,
+  modificable
+) => {
   const index = arrayInversiones.indexOf(inversion);
   const row = document.createElement("tr");
   const botonBorrarInversion = document.createElement("td");
@@ -6,12 +11,15 @@ export const agregarFilasALaTabla = (inversion, tabla, arrayInversiones) => {
     <td>$${inversion.montoInvertido}</td>
     <td>$${inversion.ganancia}</td> 
   `;
-  botonBorrarInversion.innerHTML =
-    '<button type="button" id="btn-borrar" class="btn btn-danger m-1">Retirar</button>';
 
-  row.append(botonBorrarInversion);
-  console.log(arrayInversiones);
   tabla.append(row);
+
+  if (modificable) {
+    botonBorrarInversion.innerHTML =
+      '<button type="button" id="btn-borrar" class="btn btn-danger m-1">Retirar</button>';
+    row.append(botonBorrarInversion);
+  }
+
   botonBorrarInversion.onclick = () => {
     Swal.fire({
       title: "¿Seguro que quieres retirar la inversion?",

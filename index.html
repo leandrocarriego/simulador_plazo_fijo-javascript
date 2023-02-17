@@ -14,107 +14,187 @@
   </head>
   <body class="bg-dark text-white">
     <!-- Simulador section -->
-    
-    <div class="d-flex" id="simulador">
-      <div>
-        <h1 class="m-5">Simulá tu plazo fijo</h1>
-        <form class="m-5">
-          <div class="mb-3">
-            <label for="monto" class="form-label">¿Cuánto quieres invertir?</label>
-            <input
-              type="number"
-              min="1000"
-              class="form-control"
-              id="monto"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <p>
-              ¿Durante cuanto tiempo?
-            </p>
-            <label>
-              <input 
-              class="form-check-input"
-              type="radio"
-              name="meses"
-              id="unMes"
-              value="1"
-                checked
-              />
-              1 mes
-            </label>
-            <label>
-              <input 
-              class="form-check-input"
-              type="radio"
-              name="meses"
-              id="seisMeses"
-              value="6"
-              />
-              6 meses
-            </label>
-            <label>
+
+    <div class="container" id="simulador">
+      <div class="row">
+        <div class="col" >
+          <h1 class="m-5">Simulá tu plazo fijo</h1>
+          <form class="m-5">
+            <div class="mb-3">
+              <label for="monto" class="form-label"
+                >¿Cuánto quieres invertir?</label
+              >
               <input
-              class="form-check-input" 
-              type="radio"
-              name="meses"
-              id="doceMeses"
-              value="12" 
+                type="number"
+                min="1000"
+                class="form-control"
+                id="monto"
+                required
               />
-              12 meses
-            </label>
-            <label>
-              <input 
-              class="form-check-input"
-              type="radio"
-              name="meses"
-              id="dieciochoMeses"
-              value="18" 
-              />
-              18 meses
-            </label>
-          </div>
-          <div class="d-flex mt-2 d-flex mt-4 justify-content-">
-            <button type="button" id="btn-calcular" class="btn btn-primary m-1">Calcular</button>
-            <button type="button" id="btn-invertir" class="btn btn-success m-1">Invertir</button>
-          </div>
-        </form>
-        
-    
-        <div class="m-5 text-black">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="./assets/img/ahorro.jpg" class="img-fluid rounded-start" alt="mano juntando monedas">
+            </div>
+            <div class="mb-3">
+              <p>¿Durante cuanto tiempo?</p>
+              <label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="meses"
+                  id="unMes"
+                  value="1"
+                  checked
+                />
+                1 mes
+              </label>
+              <label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="meses"
+                  id="seisMeses"
+                  value="6"
+                />
+                6 meses
+              </label>
+              <label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="meses"
+                  id="doceMeses"
+                  value="12"
+                />
+                12 meses
+              </label>
+              <label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="meses"
+                  id="dieciochoMeses"
+                  value="18"
+                />
+                18 meses
+              </label>
+            </div>
+            <div class="d-flex mt-2 d-flex mt-4 justify-content-">
+              <button type="button" id="btn-calcular" class="btn btn-primary m-1">
+                Calcular
+              </button>
+              <button type="button" id="btn-invertir" class="btn btn-success m-1">
+                Invertir
+              </button>
+            </div>
+          </form>
+  
+          <div class="m-5 text-black">
+            <div class="card mb-3" style="max-width: 540px">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="./assets/img/ahorro.jpg"
+                    class="img-fluid rounded-start"
+                    alt="mano juntando monedas"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-title">Al final del plazo fijo, recibís</p>
+                    <h2 class="card-text">$<span id="gananciaTotal">0</span></h2>
+                    <p class="card-text">Porcentaje anual: 75,00%</p>
+                    <p class="card-text">
+                      Interés ganado: $<span id="interesGanadoMostrar">0</span>
+                    </p>
                   </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <p class="card-title">Al final del plazo fijo, recibís</p>
-                      <h2 class="card-text">$<span id="gananciaTotal">0</span></h2>
-                      <p class="card-text">Porcentaje anual: 75,00%</p>
-                      <p class="card-text">Interés ganado: $<span id="interesGanadoMostrar">0</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mt-4">
+          <div class="row">
+            <div class="d-flex border-bottom border-white">
+              <h4 class="text-left">
+                Has cobrado
+                <span id="contadorInversionesCobradas"></span> inversiones
+                anteriormente
+              </h4>
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-info text-white m-4"
+                id="botonModal"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Consultar
+              </button>
+  
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1
+                        class="modal-title text-dark fs-5"
+                        id="exampleModalLabel"
+                      >
+                        Inversiones anteriores
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Inversion</th>
+                            <th scope="col">Ganancia</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody id="cuerpoTablaModal"></tbody>
+                      </table>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+  
+            <h4 class="mb-5 mt-5 text-left">
+              Actualmente tienes
+              <span id="contadorInversiones"></span> inversiones realizadas
+            </h4>
+          </div>
+          <table class="table text-white tablaInversiones">
+            <thead>
+              <tr>
+                <th scope="col">Inversion</th>
+                <th scope="col">Ganancia</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+          </table>
         </div>
-      </div>
-      <div>
-        <div class="row mb-5">
-          <h2 class="mb-5 mt-5 text-left">Tienes <span id="contadorInversiones"></span> inversiones</h2>
-        </div>
-        <table class="table text-white tablaInversiones">
-          <thead>
-            <tr>
-              <th scope="col">Inversion</th>
-              <th scope="col">Ganancia</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody id="cuerpoTabla">
-          </tbody>
-        </table>
       </div>
     </div>
 
